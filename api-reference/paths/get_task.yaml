@@ -1,0 +1,16 @@
+get:
+  description: 根據任務id獲取詳情
+  parameters:
+    - name: taskId
+      in: path
+      description: 任務id
+      required: true
+      schema:
+        type: string
+  responses:
+    200:
+      description: 任務詳情
+      content:
+        application/json:
+          schema:
+            $ref: '../components/schemas/get_task_response.yaml'

@@ -1,0 +1,13 @@
+type: object
+required:
+  - customFieldId
+properties:
+  customFieldId:
+    type: string
+    description: 字段id
+  value:
+    type: array
+    description: 字段值
+    nullable: false
+    items:
+      $ref: 'content.yaml'

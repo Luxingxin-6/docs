@@ -1,0 +1,12 @@
+type: object
+properties:
+  customFieldId:
+    type: string
+  type:
+    type: string
+  fileName:
+    type: string
+  value:
+    type: array
+    items:
+      $ref: 'content.yaml'

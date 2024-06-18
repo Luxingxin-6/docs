@@ -1,0 +1,4 @@
+Authorization:
+  type: apiKey
+  in: header
+  name: Authorization

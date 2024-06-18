@@ -1,0 +1,20 @@
+type: object
+properties:
+  createdDate:
+    type: string
+    format: date-time
+  lastModifiedDate:
+    type: string
+    format: date-time
+  id:
+    type: string
+  name:
+    type: string
+  kind:
+    type: string
+  pos:
+    type: integer
+  status:
+    type: string
+  creatorId:
+    type: string

@@ -1,33 +1,18 @@
----
-title: 'Introduction'
-description: 'Example section for showcasing API endpoints'
----
+# M-DOS  OPENAPI  Documentation
 
-<Note>
-  If you're not looking to build API reference documentation, you can delete
-  this section by removing the api-reference folder.
-</Note>
+Welcome to the M-DOS OPENAPI documentation. M-DOS (Medical-Dynamic Operating System) provides a set of APIs to interact with its platform. These APIs enable developers to manage tasks, projects, and workflows activities within MDOS efficiently.
 
-## Welcome
+## Version
 
-There are two ways to build API documentation: [OpenAPI](https://mintlify.com/docs/api-playground/openapi/setup) and [MDX components](https://mintlify.com/docs/api-playground/mdx/configuration). For the starter kit, we are using the following OpenAPI specification.
-
-<Card
-  title="Plant Store Endpoints"
-  icon="leaf"
-  href="https://github.com/mintlify/starter/blob/main/api-reference/openapi.json"
->
-  View the OpenAPI specification file
-</Card>
+Current Version: **1.0.0**
 
 ## Authentication
 
-All API endpoints are authenticated using Bearer tokens and picked up from the specification file.
+Authentication to the M-DOS API is performed via API key (Token) authentication. Include your API key in the `Authorization` header of your requests.
 
-```json
-"security": [
-  {
-    "bearerAuth": []
-  }
-]
-```
+## Date And Time Format
+All time parameters in the M-DOS system are formatted according to the ISO 8601 international standard.
+
+## Base URL
+
+All endpoints are relative to the following base URL: `https://local.mdos.intrii.com/mdos`

@@ -1,0 +1,24 @@
+put:
+  description: 更新任務字段
+  parameters:
+    - name: taskId
+      in: path
+      description: 任務id
+      required: true
+      schema:
+        type: string
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          type: array
+          items:
+            $ref: '../components/schemas/field_value_form.yaml'
+  responses:
+    200:
+      description: success
+      content:
+        application/json:
+          schema:
+            $ref: '../components/schemas/update_and_delete_task_response.yaml'

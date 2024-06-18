@@ -1,0 +1,51 @@
+type: object
+required:
+  - groupId
+  - stageId
+  - taskTypeId
+  - stateId
+  - visible
+  - field
+properties:
+  name:
+    type: string
+    description: 名稱
+  executorId:
+    type: string
+    description: 執行者id
+  startTime:
+    type: string
+    format: date-time
+    description: 開始時間
+  endTime:
+    type: string
+    format: date-time
+    description: 結束時間
+  groupId:
+    type: string
+    description: 分組id
+  stageId:
+    type: string
+    description: 自定義列id
+  taskTypeId:
+    type: string
+    description: 任務類型id
+  stateId:
+    type: string
+    description: 任務狀態id
+  visible:
+    type: boolean
+    description: 可見性，true：項目下的成員均可見，false：僅當前任務下的參與者可見
+  participant:
+    type: array
+    description: 參與者
+    items:
+      type: string
+  field:
+    type: array
+    description: 字段值
+    items:
+      $ref: 'field_value_form.yaml'
+  parentId:
+    type: string
+    description: 父任務id
