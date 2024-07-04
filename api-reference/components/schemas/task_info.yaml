@@ -1,0 +1,82 @@
+type: object
+properties:
+  createdDate:
+    type: string
+    description: 創建時間
+    format: date-time
+  lastModifiedDate:
+    type: string
+    description: 更新時間
+    format: date-time
+  id:
+    type: string
+    description: id
+  name:
+    type: string
+    description: 名稱
+  taskTypeId:
+    type: string
+    description: 任務類型id
+  parentId:
+    type: string
+    description: 父任務id
+  groupId:
+    type: string
+    description: 分組id
+  stageId:
+    type: string
+    description: 自定義列id
+  stateId:
+    type: string
+    description: 任務狀態id
+  executorId:
+    type: string
+    description: 執行者id
+  startTime:
+    type: string
+    format: date-time
+    description: 開始時間
+  endTime:
+    type: string
+    format: date-time
+    description: 結束時間
+  visible:
+    type: boolean
+    description: 可見性，true：項目下的成員均可見，false：僅當前任務下的參與者可見
+  userScope:
+    type: string
+    description: 用戶範圍
+  status:
+    type: string
+    description: 任務狀態，值為：正常-NORMAL，回收站-RECYCLED，已刪除-DELETED
+  creatorId:
+    type: string
+    description: 創建者id
+  projectId:
+    type: string
+    description: 項目id
+  kind:
+    type: string
+    description: 工作流狀態：待處理-TODO，進行中-IN_PROGRESS，已完成-DONE，已取消-CANCELED
+  statePos:
+    type: string
+    description: 任務在工作流狀態下的position
+  customPos:
+    type: string
+    description: 任務在自定義列下的position
+  executor:
+    $ref: 'user_dto.yaml'
+  taskState:
+    $ref: 'state.yaml'
+  participant:
+    type: array
+    items:
+      $ref: 'participant.yaml'
+  field:
+    type: array
+    items:
+      $ref: 'task_field_dto.yaml'
+  children:
+    type: array
+    items:
+      type: object

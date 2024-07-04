@@ -1,0 +1,89 @@
+openapi: 3.0.1
+info:
+  title: 用戶接口
+  license:
+    name: MIT
+  version: 1.0.0
+servers:
+  - url: https://local.mdos.intrii.com/openapi
+
+paths:
+  /v1/user/register:
+    post:
+      description: 注冊用戶
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RegisterForm'
+      responses:
+        '200':
+          description: 請求成功返回代碼200，其它代表失敗
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    enum:
+                      - '200'
+                      - '400'
+                      - '404'
+                      - '500'
+                    description: 狀態碼
+                  message:
+                    type: string
+                  data:
+                    type: object
+                    properties:
+                      userId:
+                        type: string
+                        description: 用戶id
+                    required:
+                      - userId
+components:
+  schemas:
+    RegisterForm:
+      type: object
+      properties:
+        username:
+          type: string
+          maxLength: 95
+          description: 用戶名
+        password:
+          type: string
+          maxLength: 95
+          description: 密碼
+        name:
+          type: string
+          maxLength: 95
+          description: 姓名
+        position:
+          type: string
+          description: 職位
+        phone:
+          type: string
+          description: 電話
+        email:
+          type: string
+          description: 郵箱
+        gender:
+          type: string
+          description: 性別
+        dn:
+          type: string
+          description: DN
+        userType:
+          type: string
+          enum: [ ADMINISTRATOR, USER ]
+          description: 用戶類型，ADMINISTRATOR：訪問管理系統，USER：訪問M-DOS系統
+      required:
+        - username
+        - password
+        - name
+        - position
+        - phone
+        - email
+        - userType

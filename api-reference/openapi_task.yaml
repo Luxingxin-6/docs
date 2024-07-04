@@ -1,0 +1,395 @@
+openapi: 3.0.1
+info:
+  title: 任務接口
+  license:
+    name: MIT
+  version: 1.0.0
+servers:
+  - url: https://local.mdos.intrii.com/openapi
+security:
+  - User-Id: [ ]
+    Application-Id: [ ]
+    Timestamp: [ ]
+    Sign: [ ]
+paths:
+  /v1/project/task/{taskId}:
+    get:
+      description: 根據任務id獲取詳情
+      parameters:
+        - name: taskId
+          in: path
+          description: 任務id
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: 任務詳情
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetTaskResponse'
+  /v1/project/{projectId}/task:
+    post:
+      description: 創建任務
+      parameters:
+        - name: projectId
+          in: path
+          description: 項目id
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateTaskRequest'
+      responses:
+        200:
+          description: 任務詳情
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateTaskResponse'
+  /v1/project/task/{taskId}/field:
+    put:
+      description: 更新任務字段
+      parameters:
+        - name: taskId
+          in: path
+          description: 任務id
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/FieldValueForm'
+      responses:
+        200:
+          description: success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UpdateAndDeleteTaskResponse'
+  /v1/project/task/{taskId}/status/{status}:
+    delete:
+      description: 移到回收站/徹底刪除/恢復
+      parameters:
+        - name: taskId
+          in: path
+          description: 任務id
+          required: true
+          schema:
+            type: string
+        - name: status
+          in: path
+          description: 狀態，可選值為：恢復-NORMAL，移到回收站-RECYCLED，徹底刪除-DELETED
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UpdateAndDeleteTaskResponse'
+components:
+  schemas:
+    TaskInfo:
+      type: object
+      properties:
+        createdDate:
+          type: string
+          description: 創建時間
+          format: date-time
+        lastModifiedDate:
+          type: string
+          description: 更新時間
+          format: date-time
+        id:
+          type: string
+          description: id
+        name:
+          type: string
+          description: 名稱
+        taskTypeId:
+          type: string
+          description: 任務類型id
+        parentId:
+          type: string
+          description: 父任務id
+        groupId:
+          type: string
+          description: 分組id
+        stageId:
+          type: string
+          description: 自定義列id
+        stateId:
+          type: string
+          description: 任務狀態id
+        executorId:
+          type: string
+          description: 執行者id
+        startTime:
+          type: string
+          format: date-time
+          description: 開始時間
+        endTime:
+          type: string
+          format: date-time
+          description: 結束時間
+        visible:
+          type: boolean
+          description: 可見性，true：項目下的成員均可見，false：僅當前任務下的參與者可見
+        userScope:
+          type: string
+          description: 用戶範圍
+        status:
+          type: string
+          description: 任務狀態，值為：正常-NORMAL，回收站-RECYCLED，已刪除-DELETED
+        creatorId:
+          type: string
+          description: 創建者id
+        projectId:
+          type: string
+          description: 項目id
+        kind:
+          type: string
+          description: 工作流狀態：待處理-TODO，進行中-IN_PROGRESS，已完成-DONE，已取消-CANCELED
+        statePos:
+          type: string
+          description: 任務在工作流狀態下的position
+        customPos:
+          type: string
+          description: 任務在自定義列下的position
+        executor:
+          $ref: '#/components/schemas/UserDTO'
+        taskState:
+          $ref: '#/components/schemas/State'
+        participant:
+          type: array
+          items:
+            $ref: '#/components/schemas/Participant'
+        field:
+          type: array
+          items:
+            $ref: '#/components/schemas/TaskFieldDTO'
+        children:
+          type: array
+          items:
+            type: object
+    UserDTO:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        username:
+          type: string
+        avatar:
+          type: string
+    State:
+      type: object
+      properties:
+        createdDate:
+          type: string
+          format: date-time
+        lastModifiedDate:
+          type: string
+          format: date-time
+        id:
+          type: string
+        name:
+          type: string
+        kind:
+          type: string
+        pos:
+          type: integer
+        status:
+          type: string
+        creatorId:
+          type: string
+    Participant:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        username:
+          type: string
+        avatar:
+          type: string
+    TaskFieldDTO:
+      type: object
+      properties:
+        customFieldId:
+          type: string
+        type:
+          type: string
+        fileName:
+          type: string
+        value:
+          type: array
+          items:
+            $ref: '#/components/schemas/Content'
+    GetTaskResponse:
+      type: object
+      properties:
+        code:
+          type: string
+          description: 狀態碼
+          enum:
+            - '200'
+            - '400'
+            - '404'
+            - '500'
+        message:
+          type: string
+        data:
+          $ref: '#/components/schemas/TaskInfo'
+    Content:
+      type: object
+      properties:
+        id:
+          type: string
+          nullable: false
+        value:
+          type: string
+          nullable: false
+    FieldValueForm:
+      type: object
+      required:
+        - customFieldId
+      properties:
+        customFieldId:
+          type: string
+          description: 字段id
+        value:
+          type: array
+          description: 字段值
+          nullable: false
+          items:
+            $ref: '#/components/schemas/Content'
+    CreateTaskRequest:
+      type: object
+      required:
+        - groupId
+        - stageId
+        - taskTypeId
+        - stateId
+        - visible
+        - field
+      properties:
+        name:
+          type: string
+          description: 名稱
+        executorId:
+          type: string
+          description: 執行者id
+        startTime:
+          type: string
+          format: date-time
+          description: 開始時間
+        endTime:
+          type: string
+          format: date-time
+          description: 結束時間
+        groupId:
+          type: string
+          description: 分組id
+        stageId:
+          type: string
+          description: 自定義列id
+        taskTypeId:
+          type: string
+          description: 任務類型id
+        stateId:
+          type: string
+          description: 任務狀態id
+        visible:
+          type: boolean
+          description: 可見性，true：項目下的成員均可見，false：僅當前任務下的參與者可見
+        participant:
+          type: array
+          description: 參與者
+          items:
+            type: string
+        field:
+          type: array
+          description: 字段值
+          items:
+            $ref: '#/components/schemas/FieldValueForm'
+        parentId:
+          type: string
+          description: 父任務id
+    CreateTaskResponse:
+      type: object
+      properties:
+        code:
+          type: string
+          description: 狀態碼
+          enum:
+            - '200'
+            - '400'
+            - '422'
+            - '404'
+            - '500'
+        message:
+          type: string
+        data:
+          type: object
+          properties:
+            taskId:
+              type: string
+          description: 任務id
+          required:
+            - taskId
+    UpdateAndDeleteTaskResponse:
+      type: object
+      properties:
+        code:
+          type: string
+          description: 狀態碼
+          enum:
+            - '200'
+            - '400'
+            - '404'
+            - '500'
+        message:
+          type: string
+        data:
+          type: string
+          default: null
+  securitySchemes:
+    User-Id:
+      type: apiKey
+      in: header
+      name: User-Id
+      description: 當前操作者ID
+
+    Application-Id:
+      type: apiKey
+      in: header
+      name: Application-Id
+      description: 應用程式ID
+
+    Timestamp:
+      type: apiKey
+      in: header
+      name: Timestamp
+      description: 請求時間戳，3分鐘内有效
+
+    Sign:
+      type: apiKey
+      in: header
+      name: Sign
+      description: 簽名值

@@ -1,0 +1,22 @@
+delete:
+  description: 移到回收站/徹底刪除/恢復
+  parameters:
+    - name: taskId
+      in: path
+      description: 任務id
+      required: true
+      schema:
+        type: string
+    - name: status
+      in: path
+      description: 狀態，可選值為：恢復-NORMAL，移到回收站-RECYCLED，徹底刪除-DELETED
+      required: true
+      schema:
+        type: string
+  responses:
+    200:
+      description: success
+      content:
+        application/json:
+          schema:
+            $ref: '../components/schemas/update_and_delete_task_response.yaml'

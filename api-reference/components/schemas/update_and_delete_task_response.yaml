@@ -1,0 +1,15 @@
+type: object
+properties:
+  code:
+    type: string
+    description: 狀態碼
+    enum:
+      - "200"
+      - "400"
+      - "404"
+      - "500"
+  message:
+    type: string
+  data:
+    type: string
+    default: null
