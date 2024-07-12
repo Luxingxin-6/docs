@@ -1,0 +1,96 @@
+openapi: 3.0.1
+info:
+  title: 數據源接口
+  license:
+    name: MIT
+  version: 1.0.0
+servers:
+  - url: https://local.mdos.intrii.com/openapi
+security:
+  - User-Id: [ ]
+    Application-Id: [ ]
+    Timestamp: [ ]
+    Sign: [ ]
+paths:
+  /v1/datasource:
+    get:
+      responses:
+        '200':
+          description: 請求成功返回代碼200，其它代碼表示失敗
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DatasourceResponse'
+components:
+  schemas:
+    DatasourceResponse:
+      type: object
+      properties:
+        code:
+          type: string
+          enum:
+            - '200'
+            - '400'
+            - '500'
+        message:
+          type: string
+          default: null
+        data:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+                default: 數據源配置表的id
+              name:
+                type: string
+                default: 數據源名稱
+              path:
+                type: string
+                default: 數據源路徑
+              returnType:
+                type: string
+                default: 返回類型
+              automatic:
+                type: string
+                description: 是否是自動數據源
+              datasourceCreatedType:
+                type: string
+                description: 是否内建
+              datasourceArgumentSet:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    description: 數據源配置所需要的參數表id
+                  name:
+                    type: string
+                    description: 參數名稱
+                  bindingType:
+                    type: string
+                    description: 綁定類型，例如：PATIENT、PRACTITIONER
+                  argType:
+                    type: string
+                    description: 參數類型，例如：TEXT、NUMBER、PATIENT_MR等
+  securitySchemes:
+    User-Id:
+      type: apiKey
+      in: header
+      name: User-Id
+      description: 當前操作者ID
+    Application-Id:
+      type: apiKey
+      in: header
+      name: Application-Id
+      description: 應用程式ID
+    Timestamp:
+      type: apiKey
+      in: header
+      name: Timestamp
+      description: 請求時間戳，3分鐘内有效
+    Sign:
+      type: apiKey
+      in: header
+      name: Sign
+      description: 簽名值
