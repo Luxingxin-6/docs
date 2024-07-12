@@ -1,0 +1,203 @@
+openapi: 3.0.1
+info:
+  title: 任務類型接口
+  license:
+    name: MIT
+  version: 1.0.0
+servers:
+  - url: https://local.mdos.intrii.com/openapi
+security:
+  - User-Id: [ ]
+    Application-Id: [ ]
+    Timestamp: [ ]
+    Sign: [ ]
+paths:
+  /v1/project/task-type/create:
+    post:
+      summary: 新建任務類型
+      description: 新建任務類型
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateTaskTypeForm'
+      responses:
+        200:
+          description: 請求成功返回代碼200，其它代碼表示失敗
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateTaskTypeResponse'
+  /v1/project/task-type/{taskTypeId}:
+    get:
+      summary: 根據任務類型id查詢任務類型
+      description: 根據任務類型id查詢任務類型
+      parameters:
+        - name: taskTypeId
+          in: path
+          required: true
+          description: 任務類型id
+          schema:
+            type: string
+      responses:
+        200:
+          description: 請求成功返回代碼200，其它代碼表示失敗
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateTaskTypeResponse'
+components:
+  schemas:
+    CreateTaskTypeForm:
+      properties:
+        projectId:
+          type: string
+          description: 項目id
+        organizationId:
+          type: string
+          description: 組織id
+        name:
+          type: string
+          description: 名稱
+        category:
+          type: string
+          description: 類別
+          enum:
+            - 'SYSTEM'
+            - 'CUSTOM'
+            - 'PATIENT'
+            - 'PRACTITIONER'
+    CreateTaskTypeResponse:
+      properties:
+        code:
+          type: string
+          description: 返回代碼
+          enum:
+            - '200'
+            - '400'
+            - '500'
+        message:
+          type: string
+        data:
+          type: object
+          properties:
+            id:
+              type: string
+              description: 任務類型id
+            name:
+              type: string
+              description: 任務類型名稱
+            category:
+              type: string
+              description: 任務類型類別
+              enum:
+                - 'SYSTEM'
+                - 'CUSTOM'
+                - 'PATIENT'
+                - 'PRACTITIONER'
+            field:
+              type: object
+              properties:
+                id:
+                  type: string
+                  description: 字段id
+                name:
+                  type: string
+                  description: 字段名稱
+                type:
+                  type: string
+                  description: 字段類別
+                  enum:
+                    - 'NOTE'
+                    - 'TAG'
+                    - 'PRIORITY'
+                    - 'PROJECT'
+                    - 'ORGANIZATION'
+                fieldType:
+                  type: string
+                  description: 字段類型，例如：SINGLE, MULTIPLE, NUMBER, DATE, TEXT, FILE, RICH_TEXT, RELATION
+                relationTaskTypeId:
+                  type: string
+                  description: 關聯的任務類型id
+                alias:
+                  type: string
+                  description: 字段對應在fhir中的別名
+                relationProjectId:
+                  type: string
+                  description: 關聯的項目id
+                associatedFieldId:
+                  type: string
+                  description: 關聯的字段id，例如EKG字段，關聯的字段id應該是病患字段的id
+                choiceSet:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                      description: 選項id
+                    name:
+                      type: string
+                      description: 選項名稱
+                datasourceType:
+                  type: string
+                  description: 數據源返回類型，例如手動數據源添加的是TASK-TYPE類型，那麽datasourceType就是對應的TASK-TYPE的CATEGORY，比如PATIENT
+                returnType:
+                  type: string
+                  description: 返回最初的數據源格式，例如手動數據源添加的是TASK-TYPE，那麽返回的也是TASK-TYPE
+                automatic:
+                  type: string
+                  description: 是否是自動數據源
+                path:
+                  type: string
+                  description: 數據源調用地址
+            workflowId:
+              type: string
+              description: 工作流id
+            workflowState:
+              type: array
+              items:
+                properties:
+                  id:
+                    type: string
+                    description: 狀態id
+                  name:
+                    type: string
+                    description: 狀態名稱
+                  kind:
+                    type: string
+                    description: 狀態類型
+                    enum:
+                      - 'START'
+                      - 'UNSET'
+                      - 'END'
+            taskPropertiesConfig:
+              type: array
+              items:
+                properties:
+                  name:
+                    type: string
+                    description: 屬性名稱
+                  required:
+                    type: boolean
+                    description: 是否必填
+  securitySchemes:
+    User-Id:
+      type: apiKey
+      in: header
+      name: User-Id
+      description: 當前操作者ID
+    Application-Id:
+      type: apiKey
+      in: header
+      name: Application-Id
+      description: 應用程式ID
+    Timestamp:
+      type: apiKey
+      in: header
+      name: Timestamp
+      description: 請求時間戳，3分鐘内有效
+    Sign:
+      type: apiKey
+      in: header
+      name: Sign
+      description: 簽名值

@@ -65,29 +65,30 @@
       ]
     },
     {
-      "group": "User",
-      "pages": [
-        "api-reference/endpoint/user/register"
-      ]
-    },
-    {
-      "group": "Organization",
-      "pages": [
-        "api-reference/endpoint/organization/create",
-        "api-reference/endpoint/organization/add-user"
-      ]
-    },
-    {
-      "group": "Application",
-      "pages": [
-        "api-reference/endpoint/application/create",
-        "api-reference/endpoint/application/add-user"
-      ]
-    },
-    {
       "group": "Project",
       "pages": [
-        "api-reference/endpoint/project/create"
+        "api-reference/endpoint/project/create",
+        "api-reference/endpoint/project/get"
+      ]
+    },
+    {
+      "group": "Field",
+      "pages": [
+        "api-reference/endpoint/field/create",
+        "api-reference/endpoint/field/save-to-task-type"
+      ]
+    },
+    {
+      "group": "Datasource",
+      "pages": [
+        "api-reference/endpoint/datasource/get"
+      ]
+    },
+    {
+      "group": "Task Type",
+      "pages": [
+        "api-reference/endpoint/task-type/create",
+        "api-reference/endpoint/task-type/get"
       ]
     },
     {

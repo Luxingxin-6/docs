@@ -1,0 +1,255 @@
+openapi: 3.0.1
+info:
+  title: 字段接口
+  license:
+    name: MIT
+  version: 1.0.0
+servers:
+  - url: https://local.mdos.intrii.com/openapi
+security:
+  - User-Id: [ ]
+    Application-Id: [ ]
+    Timestamp: [ ]
+    Sign: [ ]
+paths:
+  /v1/project/task-type/field/create:
+    post:
+      summary: 新建字段
+      description: flag為true：創建組織字段，false：創建項目字段
+      parameters:
+        - name: flag
+          in: query
+          required: true
+          description: 創建字段類型標識
+          schema:
+            type: boolean
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateFieldForm'
+      responses:
+        200:
+          description: 請求成功返回代碼200，其它代碼表示失敗
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateFieldResponse'
+  /v1/project/task-type/{taskTypeId}/field:
+    post:
+      summary: 保存任務類型下的任務字段配置
+      description: 保存任務類型下的任務字段配置
+      parameters:
+        - name: taskTypeId
+          in: path
+          required: true
+          description: 任務類型ID
+          schema:
+            type: string
+        - name: projectId
+          in: query
+          required: false
+          description: 如果是組織任務類型，那麼projectId不傳
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CommonIdListForm'
+      responses:
+        '200':
+          description: 請求成功返回代碼200，其它代碼表示失敗
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SaveFieldToTaskTypeResponse'
+components:
+  schemas:
+    SaveFieldToTaskTypeResponse:
+      type: object
+      properties:
+        code:
+          type: string
+          enum:
+            - '200'
+            - '400'
+            - '500'
+        message:
+          type: string
+          default: null
+        data:
+          type: string
+          default: null
+    CreateFieldResponse:
+      type: object
+      properties:
+        code:
+          type: string
+          description: 狀態碼
+          enum:
+            - '200'
+            - '400'
+            - '500'
+        message:
+          type: string
+        data:
+          type: object
+          properties:
+            id:
+              type: string
+              description: 字段id
+            name:
+              type: string
+              description: 字段名稱
+            type:
+              type: string
+              description: 字段類別
+              enum:
+                - 'ORGANIZATION'
+                - 'PROJECT'
+                - 'PRIORITY'
+                - 'TAG'
+                - 'NOTE'
+            fieldType:
+              type: string
+              description: 字段類型，如果是高級類型，返回的是t_datasource_conf表的id值
+              enum:
+                - 'SINGLE'
+                - 'MULTIPLE'
+                - 'NUMBER'
+                - 'DATE'
+                - 'TEXT'
+                - 'FILE'
+                - 'RICH_TEXT'
+                - 'RELATION'
+            datasourceType:
+              type: string
+              description: 數據源類型
+              enum:
+                - 'PATIENT'
+                - 'PRACTITIONER'
+            returnType:
+              type: string
+              description: 返回類型
+            datasourceArgument:
+              type: object
+              items:
+                $ref: '#/components/schemas/DatasourceArgument'
+            path:
+              type: string
+              description: 數據源調用地址
+    DatasourceArgument:
+      type: object
+      properties:
+        id:
+          type: string
+          description: 數據源參數表id
+        name:
+          type: string
+          description: 參數名稱
+        bindingType:
+          type: string
+          description: 綁定類型，例如：PATIENT
+        argType:
+          type: string
+          description: 參數類型，例如：TEXT，PATIENT_MR
+    CreateFieldForm:
+      type: object
+      properties:
+        projectId:
+          type: string
+          description: 項目id
+        organizationId:
+          type: string
+          description: 組織id
+        name:
+          type: string
+          description: 字段名稱
+          minLength: 1
+          maxLength: 95
+        description:
+          type: string
+          description: 描述
+        fieldType:
+          type: string
+          description: 字段類型，如果是高級類型，那麽傳t_datasource_conf表的id值
+          enum:
+            - 'SINGLE'
+            - 'MULTIPLE'
+            - 'NUMBER'
+            - 'DATE'
+            - 'TEXT'
+            - 'FILE'
+            - 'RICH_TEXT'
+            - 'RELATION'
+        relationTaskTypeId:
+          type: string
+          description: 關聯的任務類型id
+        relationProjectId:
+          type: array
+          items:
+            type: string
+          description: 關聯的項目列表
+        bindingSubject:
+          type: array
+          items:
+            $ref: '#/components/schemas/BindingSubject'
+        choiceSet:
+          type: array
+          items:
+            $ref: '#/components/schemas/Content'
+        advanceType:
+          type: string
+          description: 高級類型下的字段類型
+    BindingSubject:
+      type: object
+      properties:
+        relationFieldId:
+          type: string
+          description: 關聯字段欄位id
+        fieldId:
+          type: string
+          description: 綁定的字段欄位id
+    Content:
+      type: object
+      properties:
+        id:
+          type: string
+          description: 非文本類型的傳該字段，例如：選項id
+          default: null
+        value:
+          type: string
+          description: 值
+          default: null
+    CommonIdListForm:
+      type: object
+      properties:
+        idList:
+          type: array
+          items:
+            type: string
+          description: id集合
+  securitySchemes:
+    User-Id:
+      type: apiKey
+      in: header
+      name: User-Id
+      description: 當前操作者ID
+    Application-Id:
+      type: apiKey
+      in: header
+      name: Application-Id
+      description: 應用程式ID
+    Timestamp:
+      type: apiKey
+      in: header
+      name: Timestamp
+      description: 請求時間戳，3分鐘内有效
+    Sign:
+      type: apiKey
+      in: header
+      name: Sign
+      description: 簽名值
