@@ -53,7 +53,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/CreateTaskResponse'
   /v1/project/task/{taskId}/field:
-    put:
+    patch:
       description: 更新任務字段
       parameters:
         - name: taskId
@@ -100,8 +100,93 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/UpdateAndDeleteTaskResponse'
+  /v1/project/{projectId}/task/filter:
+    get:
+      description: 根據條件查詢任務
+      parameters:
+        - name: projectId
+          in: path
+          description: 項目id
+          required: true
+          schema:
+            type: string
+        - name: stageId
+          in: query
+          description: 自定義列id
+          required: false
+          schema:
+            type: string
+        - name: stateId
+          in: query
+          description: 任務狀態id
+          required: false
+          schema:
+            type: string
+        - name: taskTypeId
+          in: query
+          description: 任務類型id
+          required: false
+          schema:
+            type: string
+        - name: groupId
+          in: query
+          description: 分組id
+          required: false
+          schema:
+            type: string
+        - name: name
+          in: query
+          description: 任務名稱
+          required: false
+          schema:
+            type: string
+        - name: page
+          in: query
+          description: 頁碼，默認為1
+          required: false
+          schema:
+            type: integer
+        - name: size
+          in: query
+          description: 每頁數量，默認為10
+          required: false
+          schema:
+            type: integer
+      responses:
+        200:
+          description: 任務詳情
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetTaskPageResponse'
 components:
   schemas:
+    GetTaskPageResponse:
+      type: object
+      properties:
+        code:
+          type: string
+          description: 狀態碼
+          enum:
+            - '200'
+            - '400'
+            - '404'
+            - '500'
+        message:
+          type: string
+        data:
+          type: object
+          properties:
+            content:
+              type: array
+              items:
+                $ref: '#/components/schemas/TaskInfo'
+            totalElements:
+              type: integer
+              description: 總數
+            totalPages:
+              type: integer
+              description: 總頁數
     TaskInfo:
       type: object
       properties:

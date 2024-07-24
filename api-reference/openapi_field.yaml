@@ -12,17 +12,15 @@ security:
     Timestamp: [ ]
     Sign: [ ]
 paths:
-  /v1/project/task-type/field/create:
+  /v1/project/task-type/{taskTypeId}/field/create:
     post:
       summary: 新建字段
-      description: flag為true：創建組織字段，false：創建項目字段
       parameters:
-        - name: flag
-          in: query
+        - name: taskTypeId
+          in: path
           required: true
-          description: 創建字段類型標識
           schema:
-            type: boolean
+            type: string
       requestBody:
         required: true
         content:
@@ -36,53 +34,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/CreateFieldResponse'
-  /v1/project/task-type/{taskTypeId}/field:
-    post:
-      summary: 保存任務類型下的任務字段配置
-      description: 保存任務類型下的任務字段配置
-      parameters:
-        - name: taskTypeId
-          in: path
-          required: true
-          description: 任務類型ID
-          schema:
-            type: string
-        - name: projectId
-          in: query
-          required: false
-          description: 如果是組織任務類型，那麼projectId不傳
-          schema:
-            type: string
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/CommonIdListForm'
-      responses:
-        '200':
-          description: 請求成功返回代碼200，其它代碼表示失敗
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/SaveFieldToTaskTypeResponse'
 components:
   schemas:
-    SaveFieldToTaskTypeResponse:
-      type: object
-      properties:
-        code:
-          type: string
-          enum:
-            - '200'
-            - '400'
-            - '500'
-        message:
-          type: string
-          default: null
-        data:
-          type: string
-          default: null
     CreateFieldResponse:
       type: object
       properties:
@@ -165,6 +118,10 @@ components:
         organizationId:
           type: string
           description: 組織id
+        flag:
+          type: boolean
+          description: true表示創建組織字段，false表示創建項目字段
+          nullable: false
         name:
           type: string
           description: 字段名稱
@@ -224,14 +181,6 @@ components:
           type: string
           description: 值
           default: null
-    CommonIdListForm:
-      type: object
-      properties:
-        idList:
-          type: array
-          items:
-            type: string
-          description: id集合
   securitySchemes:
     User-Id:
       type: apiKey
