@@ -12,7 +12,7 @@ security:
     Timestamp: [ ]
     Sign: [ ]
 paths:
-  /v1/project/task-type/{taskTypeId}/field/create:
+  /v1/field/task-type/{taskTypeId}:
     post:
       summary: 新建字段
       parameters:

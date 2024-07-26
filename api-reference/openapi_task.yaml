@@ -12,7 +12,7 @@ security:
     Timestamp: [ ]
     Sign: [ ]
 paths:
-  /v1/project/task/{taskId}:
+  /v1/task/{taskId}:
     get:
       description: 根據任務id獲取詳情
       parameters:
@@ -29,16 +29,9 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/GetTaskResponse'
-  /v1/project/{projectId}/task:
+  /v1/task:
     post:
       description: 創建任務
-      parameters:
-        - name: projectId
-          in: path
-          description: 項目id
-          required: true
-          schema:
-            type: string
       requestBody:
         required: true
         content:
@@ -52,7 +45,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/CreateTaskResponse'
-  /v1/project/task/{taskId}/field:
+  /v1/task/{taskId}/field:
     patch:
       description: 更新任務字段
       parameters:
@@ -77,7 +70,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/UpdateAndDeleteTaskResponse'
-  /v1/project/task/{taskId}/status/{status}:
+  /v1/task/{taskId}/status/{status}:
     delete:
       description: 移到回收站/徹底刪除/恢復
       parameters:
@@ -100,12 +93,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/UpdateAndDeleteTaskResponse'
-  /v1/project/{projectId}/task/filter:
+  /v1/task/filter:
     get:
       description: 根據條件查詢任務
       parameters:
         - name: projectId
-          in: path
+          in: query
           description: 項目id
           required: true
           schema:
@@ -367,6 +360,7 @@ components:
     CreateTaskRequest:
       type: object
       required:
+        - projectId
         - groupId
         - stageId
         - taskTypeId
@@ -374,6 +368,9 @@ components:
         - visible
         - field
       properties:
+        projectId:
+          type: string
+          description: 項目id
         name:
           type: string
           description: 名稱

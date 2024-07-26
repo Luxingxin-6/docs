@@ -12,7 +12,7 @@ security:
     Timestamp: [ ]
     Sign: [ ]
 paths:
-  /v1/project/create:
+  /v1/project:
     post:
       summary: 創建專案
       requestBody:
