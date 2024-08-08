@@ -161,6 +161,12 @@ components:
         advanceType:
           type: string
           description: 高級類型下的字段類型
+        alias:
+          type: string
+          description: 別名標準，例如：姓名：name，聯絡方式：telecom，性別：gender，出生日期：birthDate，年齡：age，地址：address，病歷號：mr，病患id：pi。
+        dbName:
+          type: string
+          description: 外部數據庫的原始列名
     BindingSubject:
       type: object
       properties:

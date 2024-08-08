@@ -4,15 +4,35 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1862c581-7160-4e75-8684-8ee7cc8222cf" name="Changes" comment="feat:添加用户、组织、应用、项目的接口文档" />
+    <list default="true" id="1862c581-7160-4e75-8684-8ee7cc8222cf" name="Changes" comment="style:修改openapi规范" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 0
-}]]></component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="dev" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;Luxingxin-6&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/Luxingxin-6/docs.git&quot;,
+    &quot;accountId&quot;: &quot;f8fc42f5-1284-480d-be16-04ed8be3dcd6&quot;
+  }
+}</component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 0
+}</component>
   <component name="ProjectId" id="2ille16nNGOjsixAiiysntT35Km" />
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="2" id="Add" />
@@ -24,7 +44,7 @@
   "keyToString": {
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "D:/company/project/his/openapi",
+    "last_opened_file_path": "D:/company/project/his/sso",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -33,11 +53,16 @@
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\company\project\docs" />
+    </key>
+  </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-jdk-9823dce3aa75-b114ca120d71-intellij.indexing.shared.core-IU-242.16677.21" />
-        <option value="bundled-js-predefined-d6986cc7102b-19b454f630c8-JavaScript-IU-242.16677.21" />
+        <option value="bundled-jdk-9823dce3aa75-b114ca120d71-intellij.indexing.shared.core-IU-242.19890.14" />
+        <option value="bundled-js-predefined-d6986cc7102b-eef0733dfcaf-JavaScript-IU-242.19890.14" />
       </set>
     </attachedChunks>
   </component>
@@ -49,7 +74,10 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1720073136507</updated>
-      <workItem from="1720073137678" duration="6817000" />
+      <workItem from="1720073137678" duration="7967000" />
+      <workItem from="1720678514920" duration="29187000" />
+      <workItem from="1721808281947" duration="7307000" />
+      <workItem from="1721982158723" duration="2728000" />
     </task>
     <task id="LOCAL-00001" summary="feat:添加用户、组织、应用、项目的接口文档">
       <option name="closed" value="true" />
@@ -59,7 +87,39 @@
       <option name="project" value="LOCAL" />
       <updated>1720078291696</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="feat:添加任务类型、字段、数据源相关的接口">
+      <option name="closed" value="true" />
+      <created>1720779066740</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1720779066740</updated>
+    </task>
+    <task id="LOCAL-00003" summary="feat:添加任务类型、字段、数据源相关的接口">
+      <option name="closed" value="true" />
+      <created>1720779275532</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1720779275532</updated>
+    </task>
+    <task id="LOCAL-00004" summary="fix:1、任务添加根据条件进行筛选接口；2、新建字段接口重构为一个接口；3、更新任务的字段接口，请求方式改为patch">
+      <option name="closed" value="true" />
+      <created>1721810346255</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1721810346255</updated>
+    </task>
+    <task id="LOCAL-00005" summary="style:修改openapi规范">
+      <option name="closed" value="true" />
+      <created>1721983355555</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1721983355555</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -78,6 +138,10 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="feat:添加用户、组织、应用、项目的接口文档" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat:添加用户、组织、应用、项目的接口文档" />
+    <MESSAGE value="init" />
+    <MESSAGE value="feat:添加任务类型、字段、数据源相关的接口" />
+    <MESSAGE value="fix:1、任务添加根据条件进行筛选接口；2、新建字段接口重构为一个接口；3、更新任务的字段接口，请求方式改为patch" />
+    <MESSAGE value="style:修改openapi规范" />
+    <option name="LAST_COMMIT_MESSAGE" value="style:修改openapi规范" />
   </component>
 </project>
