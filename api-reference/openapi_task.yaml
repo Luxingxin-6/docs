@@ -70,6 +70,34 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/UpdateAndDeleteTaskResponse'
+  /v1/task/{taskId}/title:
+    patch:
+        description: 更新任務標題
+        parameters:
+          - name: taskId
+            in: path
+            description: 任務id
+            required: true
+            schema:
+                type: string
+        requestBody:
+          required: true
+          content:
+            application/json:
+              schema:
+                type: object
+                items:
+                  properties:
+                    name:
+                      type: string
+                      description: 任務名稱
+        responses:
+          200:
+            description: success
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/UpdateAndDeleteTaskResponse'
   /v1/task/{taskId}/status/{status}:
     delete:
       description: 移到回收站/徹底刪除/恢復

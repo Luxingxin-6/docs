@@ -95,7 +95,8 @@
       "pages": [
         "api-reference/endpoint/task/create",
         "api-reference/endpoint/task/get",
-        "api-reference/endpoint/task/update",
+        "api-reference/endpoint/task/update_field",
+        "api-reference/endpoint/task/update_title",
         "api-reference/endpoint/task/delete",
         "api-reference/endpoint/task/filter"
       ]
