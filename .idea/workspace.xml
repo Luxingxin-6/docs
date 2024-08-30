@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1862c581-7160-4e75-8684-8ee7cc8222cf" name="Changes" comment="style:修改openapi规范" />
+    <list default="true" id="1862c581-7160-4e75-8684-8ee7cc8222cf" name="Changes" comment="feat:更新任务的标题" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -44,7 +44,7 @@
   "keyToString": {
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "D:/company/project/his/sso",
+    "last_opened_file_path": "D:/company/project/his/docs",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -61,8 +61,8 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-jdk-9823dce3aa75-b114ca120d71-intellij.indexing.shared.core-IU-242.19890.14" />
-        <option value="bundled-js-predefined-d6986cc7102b-eef0733dfcaf-JavaScript-IU-242.19890.14" />
+        <option value="bundled-jdk-9823dce3aa75-b114ca120d71-intellij.indexing.shared.core-IU-242.21829.40" />
+        <option value="bundled-js-predefined-d6986cc7102b-7c0b70fcd90d-JavaScript-IU-242.21829.40" />
       </set>
     </attachedChunks>
   </component>
@@ -78,6 +78,7 @@
       <workItem from="1720678514920" duration="29187000" />
       <workItem from="1721808281947" duration="7307000" />
       <workItem from="1721982158723" duration="2728000" />
+      <workItem from="1724393645737" duration="2288000" />
     </task>
     <task id="LOCAL-00001" summary="feat:添加用户、组织、应用、项目的接口文档">
       <option name="closed" value="true" />
@@ -119,13 +120,41 @@
       <option name="project" value="LOCAL" />
       <updated>1721983355555</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="feat:更新任务的标题">
+      <option name="closed" value="true" />
+      <created>1724394470312</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1724394470312</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
+    <option name="RECENT_FILTERS">
+      <map>
+        <entry key="Branch">
+          <value>
+            <list>
+              <RecentGroup>
+                <option name="FILTER_VALUES">
+                  <option value="origin/master" />
+                </option>
+              </RecentGroup>
+              <RecentGroup>
+                <option name="FILTER_VALUES">
+                  <option value="origin/dev" />
+                </option>
+              </RecentGroup>
+            </list>
+          </value>
+        </entry>
+      </map>
+    </option>
     <option name="TAB_STATES">
       <map>
         <entry key="MAIN">
@@ -142,6 +171,7 @@
     <MESSAGE value="feat:添加任务类型、字段、数据源相关的接口" />
     <MESSAGE value="fix:1、任务添加根据条件进行筛选接口；2、新建字段接口重构为一个接口；3、更新任务的字段接口，请求方式改为patch" />
     <MESSAGE value="style:修改openapi规范" />
-    <option name="LAST_COMMIT_MESSAGE" value="style:修改openapi规范" />
+    <MESSAGE value="feat:更新任务的标题" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat:更新任务的标题" />
   </component>
 </project>

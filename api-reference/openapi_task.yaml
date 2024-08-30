@@ -257,6 +257,9 @@ components:
         userScope:
           type: string
           description: 用戶範圍
+        uniqueId:
+          type: string
+          description: 任務數字id
         status:
           type: string
           description: 任務狀態，值為：正常-NORMAL，回收站-RECYCLED，已刪除-DELETED
